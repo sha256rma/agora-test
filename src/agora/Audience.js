@@ -46,8 +46,8 @@ function Audience() {
         const playerContainer = document.createElement("div");
         // Specify the ID of the DIV container. You can use the `uid` of the remote user.
         playerContainer.id = user.uid.toString();
-        playerContainer.style.width = "640px";
-        playerContainer.style.height = "480px";
+        playerContainer.style.width = "720px";
+        playerContainer.style.height = "1280px";
         document.body.append(playerContainer);
 
         // Play the remote video track.
