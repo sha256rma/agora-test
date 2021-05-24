@@ -16,7 +16,7 @@ const options = {
     "00671b833f6de43406889a99afb31faf75cIABUg35RVQZTTCDUFB36NAL9e+wRYkSmOk0jiBkzPbgbUUmx8WYAAAAAEAA7EFxErYWsYAEAAQCqhaxg",
 };
 
-function Host() {
+function Audience() {
   useEffect(() => {
     joinCall();
   }, []);
@@ -24,7 +24,7 @@ function Host() {
   async function joinCall() {
     rtc.client = AgoraRTC.createClient({ mode: "live", codec: "vp8" });
 
-    await rtc.client.setClientRole("host");
+    await rtc.client.setClientRole("audience");
 
     const uid = await rtc.client.join(
       options.appId,
@@ -32,15 +32,6 @@ function Host() {
       options.token,
       null
     );
-
-    // Create an audio track from the audio sampled by a microphone.
-    rtc.localAudioTrack = await AgoraRTC.createMicrophoneAudioTrack();
-    // Create a video track from the video captured by a camera.
-    rtc.localVideoTrack = await AgoraRTC.createCameraVideoTrack();
-    // Publish the local audio and video tracks to the channel.
-    await rtc.client.publish([rtc.localAudioTrack, rtc.localVideoTrack]);
-
-    console.log("publish success!");
 
     rtc.client.on("user-published", async (user, mediaType) => {
       // Subscribe to a remote user.
@@ -107,4 +98,4 @@ function Host() {
   );
 }
 
-export default Host;
+export default Audience;
